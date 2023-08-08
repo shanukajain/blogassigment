@@ -5,7 +5,8 @@ const cors=require("cors")
 const Authentication = require("./middelwares/Authentication");
 const { PostRouter } = require("./routers/post");
 const { commentRouter } = require("./routers/comment");
-
+require("dotenv").config();
+const Port=process.env.Port;
 const app=experss();
 app.use(cors());
 app.use(experss.json());
@@ -21,7 +22,7 @@ app.get("/check",(req,res)=>{
     res.send("done");
 })
 
-app.listen("4000",async()=>{
+app.listen(Port,async()=>{
     try {
         await sequelize.sync();
         console.log("connect");
